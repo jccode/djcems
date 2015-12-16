@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ from django.db import models
 class Bus(models.Model):
     bid = models.CharField(max_length=45)
     plate_number = models.CharField(max_length=45)
+    drivers = models.ManyToManyField(User)
 
 
 class BaseBusData(models.Model):

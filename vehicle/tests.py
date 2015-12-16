@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Bus, BusData, MileageData
+from django.contrib.auth.models import User
 from django.utils import timezone
 
 # Create your tests here.
@@ -55,3 +56,11 @@ class BusDataTests(TestCase):
         self.assertEqual(0, BusData.objects.count())
         self.assertEqual(0, MileageData.objects.count())
 
+    def test_bus_bind_user(self):
+        self.assertEqual(1, Bus.objects.count())
+        bus = Bus.objects.get(bid="hello")
+        user1 = User.objects.create_user('tom', 'tom@fakesite.com', 'tom')
+        user2 = User.objects.create_user('cat', 'cat@fakesite.com', 'cat')
+        self.assertEqual(2, User.objects.count())
+        bus.drivers.add(user1, user2)
+        self.assertEqual(2, Bus.objects.get(bid="hello").drivers.count())
