@@ -34,12 +34,18 @@ class BusData(BaseBusData):
         (2, 'N'),
         (3, 'D'),
     )
-    status = models.IntegerField(choices=STATUS)
-    speed = models.IntegerField
-    gear = models.IntegerField(choices=GEAR)
-    failure_info = models.IntegerField()
-    longitude = models.FloatField()
-    latitude = models.FloatField()
+    speed = models.IntegerField(null=True, blank=True)
+    status = models.IntegerField(choices=STATUS, null=True, blank=True)
+    gear = models.IntegerField(choices=GEAR, null=True, blank=True)
+    failure_info = models.IntegerField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)
+
+
+class MileageData(BaseBusData):
+    total = models.IntegerField(null=True, blank=True)
+    section = models.IntegerField(null=True, blank=True)
+    remain = models.IntegerField(null=True, blank=True)
 
 
     
