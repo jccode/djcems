@@ -3,7 +3,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer
+from .serializers import UserSerializer, GroupSerializer, UserProfileSerializer
+from rest_framework.decorators import api_view, authentication_classes, renderer_classes
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -20,5 +22,16 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
+@api_view(['GET'])
+def curruser(request, **kwargs):
+    cuser = request.user
+    # serializer = UserProfileSerializer(cuser.userprofile, context={'request': request})
+    # return Response(serializer.data)
 
-
+    return Response({
+        'id': cuser.id,
+        'username': cuser.username,
+        'email': cuser.email,
+        'groups': map(lambda g: g.name, cuser.groups.all()),
+        'phone': cuser.userprofile.phone
+    })

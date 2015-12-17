@@ -1,1 +1,7 @@
-__author__ = 'jcchen'
+
+from django.conf.urls import patterns, url, include
+import views
+
+urlpatterns = [
+    url('curruser/$', views.curruser),
+]

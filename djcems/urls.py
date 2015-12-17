@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-token-auth/', views.obtain_auth_token),
 
-    # verhicle
+    url(r'^userprofile/', include('userprofile.urls')),
     url(r'^vehicle/', include('vehicle.urls')),
+
 ]
