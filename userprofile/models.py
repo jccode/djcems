@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db.models.signals import post_save
+from rest_framework.authtoken.models import Token
 
 
 # Create your models here.
@@ -32,12 +33,14 @@ def assure_user_profile_exist(pk):
     return
 
 
-def create_user_profile(sender, **kwargs):
+def create_user_profile_and_token(sender, **kwargs):
     user = kwargs["instance"]
     if kwargs["created"]:
         # make sure username is telphone number
         up = UserProfile(user=user)
         up.save()
+        Token.objects.create(user=user)
+
 
 # singals
-post_save.connect(create_user_profile, sender=User)
+post_save.connect(create_user_profile_and_token, sender=User)
