@@ -21,8 +21,8 @@ from userprofile import views
 
 # rest_framework routes
 router = routers.DefaultRouter()
-router.register(r'user', views.UserViewSet)
-router.register(r'group', views.GroupViewSet)
+router.register(r'api/user', views.UserViewSet)
+router.register(r'api/group', views.GroupViewSet)
 
 
 

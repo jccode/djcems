@@ -38,12 +38,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'userprofile',
     'vehicle',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,9 +124,26 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissions'
     ]
 }
+
+# CORS
+CORS_ORIGIN_WHITELIST = (
+    '127.0.0.1:8100',
+    'localhost:8100',
+    '10.10.5.81:8100',
+    '',
+    'null',
+)
+
+CORS_ALLOW_CREDENTIALS = True
+
+# CORS_EXPOSE_HEADERS = (
+#     "Access-Control-Allow-Origin",
+# )
+
+
 
 # LOG
 LOGGING = {
@@ -158,3 +177,4 @@ LOGGING = {
         }
     }
 }
+
