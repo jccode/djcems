@@ -6,14 +6,19 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from rest_framework import status
 from django.apps import apps
+import logging
 from .apps import VehicleConfig
 from .models import Bus
 from .serializers import TapiSerializer
 
+
+logger = logging.getLogger(__name__)
+
 class CollectVehicleData(APIView):
 
     authentication_classes = (authentication.BasicAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.DjangoModelPermissions, )
+    queryset = Bus.objects.all()
 
     mapping = {
         "CarID": "Bus.bid",
@@ -23,9 +28,8 @@ class CollectVehicleData(APIView):
         "CarStatus": "BusData.status",
     }
 
-    def get(self, request, *args, **kwargs):
-        print(request.data)
-        return Response(True)
+    # def get(self, request, *args, **kwargs):
+    #     return Response(True)
 
     def post(self, request, *args, **kwargs):
         """
@@ -36,8 +40,8 @@ class CollectVehicleData(APIView):
         :param kwargs:
         :return:
         """
-        print(" ------------ CALLING TERMINAL API ----------------")
-        # print(request.data)
+        logger.debug(" ------------ CALLING TERMINAL API ----------------")
+        logger.debug(request.data)
 
         serializer = TapiSerializer(data=request.data)
         if serializer.is_valid():
