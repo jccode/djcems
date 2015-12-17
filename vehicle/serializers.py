@@ -3,6 +3,7 @@
 from rest_framework import serializers
 from .models import Bus
 from django.apps import apps
+from django.utils import timezone
 
 
 class TapiSerializer(serializers.Serializer):
@@ -21,25 +22,26 @@ class TapiSerializer(serializers.Serializer):
     }
 
     def create(self, validated_data):
-        print('------------ serializer ------------')
-        print(validated_data)
+        # print('------------ serializer ------------')
+        # print(validated_data)
         ret = self.process_data(validated_data)
-        print(ret)
-
-        # bid = ret['Bus']['bid']
+        # print(ret)
         bid = validated_data['CarID']
         try:
             bus = Bus.objects.get(bid=bid)
         except:
             bus = Bus.objects.create(bid=bid)
 
+        now = timezone.now()
         for modelName, objs in ret.items():
             if modelName == 'Bus':
                 continue
             model = apps.get_model(app_label='vehicle', model_name=modelName)
-            # model.objects.create(**objs)
-            m = model(**objs)
-            m.save()
+            objs['bus'] = bus
+            objs['timestamp'] = now
+            model.objects.create(**objs)
+            # m = model(**objs)
+            # m.save()
 
         return bus
 
@@ -51,8 +53,7 @@ class TapiSerializer(serializers.Serializer):
             target = self.mapping[str(reqKey)]
             [model, field] = target.split(".")
             if not result.has_key(model):
-                result[model] = []
+                result[model] = {}
             result[model][field] = value
-            # result[model].append((field, value))
         return result
 

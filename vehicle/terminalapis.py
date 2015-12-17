@@ -13,7 +13,7 @@ from .serializers import TapiSerializer
 class CollectVehicleData(APIView):
 
     authentication_classes = (authentication.BasicAuthentication, )
-    permission_classes = (permissions.IsAdminUser, )
+    permission_classes = (permissions.IsAuthenticated, )
 
     mapping = {
         "CarID": "Bus.bid",
@@ -37,24 +37,7 @@ class CollectVehicleData(APIView):
         :return:
         """
         print(" ------------ CALLING TERMINAL API ----------------")
-        print(request.data)
-
-        # ret = self.process_data(request.data)
-        #
-        # print(ret)
-        # bid = ret['Bus']['bid']
-        #
-        # try:
-        #     bus = Bus.objects.get(bid=bid)
-        # except:
-        #     bus = Bus.objects.create(bid=bid)
-        # for modelName, objs in ret.items():
-        #     if modelName == 'Bus':
-        #         continue
-        #     model = apps.get_model(app_label='vehicle', model_name=modelName)
-        #     # model.objects.create(*objs)
-        #     m = model(*objs)
-        #     m.save()
+        # print(request.data)
 
         serializer = TapiSerializer(data=request.data)
         if serializer.is_valid():
