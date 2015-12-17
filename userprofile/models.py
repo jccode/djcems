@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+import re
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
@@ -23,6 +24,8 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to="avatar", blank=True, null=True)
 
 
+mobile_pattern = re.compile(r'^(13|15|18)\d{9}$')
+
 def assure_user_profile_exist(pk):
     user = User.objects.get(pk=pk)
     try:
@@ -38,6 +41,8 @@ def create_user_profile_and_token(sender, **kwargs):
     if kwargs["created"]:
         # make sure username is telphone number
         up = UserProfile(user=user)
+        if mobile_pattern.match(user.username):
+            up.phone = user.username
         up.save()
         Token.objects.create(user=user)
 

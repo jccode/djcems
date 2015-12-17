@@ -2,10 +2,11 @@
 
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from .serializers import UserSerializer, GroupSerializer, UserProfileSerializer
-from rest_framework.decorators import api_view, authentication_classes, renderer_classes
+from rest_framework.decorators import api_view, authentication_classes, renderer_classes, permission_classes
 from rest_framework.response import Response
+from djcems.utils import rest_anonymous
 
 # Create your views here.
 
@@ -35,3 +36,24 @@ def curruser(request, **kwargs):
         'groups': map(lambda g: g.name, cuser.groups.all()),
         'phone': cuser.userprofile.phone
     })
+
+
+@api_view(['GET'])
+@rest_anonymous()
+def userexist(request, *args, **kwargs):
+    name = request.GET.get("q", None)
+    if not name:
+        return Response(data="paramter q is required", status=status.HTTP_400_BAD_REQUEST)
+    exist = User.objects.filter(username=name).count() > 0
+    return Response(exist)
+
+
+@api_view(['POST'])
+@rest_anonymous()
+def signup(request, *args, **kwargs):
+    serialized = UserSerializer(data=request.data, context={'request': request})
+    if serialized.is_valid():
+        serialized.save()
+        return Response(serialized.data)
+    else:
+        return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
