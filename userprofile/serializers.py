@@ -15,8 +15,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     groups = GroupSerializer(many=True, read_only=True)
 
     def create(self, validated_data):
-        password = validated_data.pop('password', None)
+        # password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
+        password = self.initial_data["password"]
         if password is not None:
             instance.set_password(password)
         instance.save()
@@ -34,7 +35,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'username', 'email', 'groups')
-        write_only_fields = ('password')
+        # write_only_fields = ('password')
         read_only_fields = ('id')
 
 

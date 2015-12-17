@@ -6,6 +6,7 @@ from rest_framework import viewsets, status
 from .serializers import UserSerializer, GroupSerializer, UserProfileSerializer
 from rest_framework.decorators import api_view, authentication_classes, renderer_classes, permission_classes
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from djcems.utils import rest_anonymous
 
 # Create your views here.
@@ -53,7 +54,11 @@ def userexist(request, *args, **kwargs):
 def signup(request, *args, **kwargs):
     serialized = UserSerializer(data=request.data, context={'request': request})
     if serialized.is_valid():
-        serialized.save()
-        return Response(serialized.data)
+        user = serialized.save()
+        ret = serialized.data
+        token = Token.objects.get(user=user)
+        ret['id'] = user.id
+        ret['token'] = token.key
+        return Response(ret)
     else:
         return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
