@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-18 23:21+0800\n"
+"PO-Revision-Date: 2015-12-18 21:37+0800\n"
+"Last-Translator: Jessie.chen <junchangchen@gmail.com>\n"
+"Language-Team: hongdingltd <jessie.chen@hongdingltd.com>\n"
+"Language: zh-Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:13
+msgid "Bus unique id"
+msgstr ""
+
+#: models.py:14
+msgid "Plate number"
+msgstr "车牌号"
+
+#: models.py:15
+msgid "Drivers"
+msgstr "司机"
+
+#. Translators: motionless / "静止"
+#: models.py:29
+msgid "motionless"
+msgstr ""
+
+#. Translators: EV / "纯电动"
+#: models.py:31
+msgid "EV"
+msgstr ""
+
+#. Translators: HEV / "混合动力"
+#: models.py:33
+msgid "HEV"
+msgstr ""
+
+#. Translators: Road charging / "行车充电"
+#: models.py:35
+msgid "Road charging"
+msgstr ""
+
+#. Translators: Back braking / 制动回馈
+#: models.py:37
+msgid "Back braking"
+msgstr ""
+
+#: models.py:45
+msgid "Speed"
+msgstr ""
+
+#: models.py:46
+msgid "Vehicle status"
+msgstr ""
+
+#: models.py:47
+msgid "Gear"
+msgstr ""
+
+#: models.py:48
+msgid "Failure information"
+msgstr ""
+
+#: models.py:49
+msgid "Longitude"
+msgstr ""
+
+#: models.py:50
+msgid "Latitude"
+msgstr ""
+
+#: models.py:54
+msgid "Total milage"
+msgstr ""
+
+#: models.py:55
+msgid "Section milage"
+msgstr ""
+
+#: models.py:56
+msgid "Available milage"
+msgstr ""
+
+#: models.py:60
+msgid "Remain hydrogen"
+msgstr ""
+
+#: models.py:61
+msgid "Hydrogen bottle temp."
+msgstr ""
+
+#. Translators: work / 工作中
+#: models.py:67
+msgid "work"
+msgstr ""
+
+#. Translators: failure / 故障
+#: models.py:69
+msgid "failure"
+msgstr ""
+
+#. Translators: stop / 停止
+#: models.py:71
+msgid "stop"
+msgstr ""
+
+#: models.py:73
+msgid "Fuel cell status"
+msgstr ""
+
+#: models.py:74
+msgid "Fuel cell voltage"
+msgstr ""
+
+#: models.py:75
+msgid "Fuel cell current"
+msgstr ""
+
+#: models.py:76
+msgid "Fuel cell temperature"
+msgstr ""
+
+#: models.py:80
+msgid "Battery status"
+msgstr ""
+
+#: models.py:81
+msgid "Battery voltage"
+msgstr ""
+
+#: models.py:82
+msgid "Battery current"
+msgstr ""
+
+#: models.py:83
+msgid "Battery temperature"
+msgstr ""
+
+#: models.py:84
+msgid "Battery left"
+msgstr ""
+
+#: models.py:88
+msgid "Energy saving amount"
+msgstr ""
+
+#: models.py:89
+msgid "Energy saving money"
+msgstr ""
+
+#: models.py:90
+msgid "Emission reduction"
+msgstr ""
+
+#: models.py:94
+msgid "Motor speed"
+msgstr ""
+
+#: models.py:95
+msgid "Motor torque"
+msgstr ""
+
+#: models.py:96
+msgid "Motor voltage"
+msgstr ""
+
+#: models.py:97
+msgid "Motor current"
+msgstr ""
+
+#: models.py:98
+msgid "Motor temperature"
+msgstr ""
