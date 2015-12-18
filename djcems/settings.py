@@ -184,3 +184,10 @@ LOGGING = {
     }
 }
 
+# huyi sms
+SMS = {
+    'huyi': {
+        'username': 'cf_hongding',
+        'password': 'e6a52c828d56b46129fbf85c4cd164b3', # md5 already
+    }
+}
