@@ -36,4 +36,5 @@ urlpatterns = [
     url(r'^userprofile/', include('userprofile.urls')),
     url(r'^vehicle/', include('vehicle.urls')),
     url(r'^sms/', include('sms.urls')),
+    url(r'^hello/', include('hello.urls')),
 ]
