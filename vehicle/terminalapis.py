@@ -19,38 +19,6 @@ class CollectVehicleData(APIView):
     permission_classes = (permissions.DjangoModelPermissions, )
     queryset = Bus.objects.all()
 
-    # mapping = {
-    #     "CarID": "Bus.bid",
-    #     "CarTMileage": "MileageData.total",
-    #     "CarFMileage": "MileageData.section",
-    #     "CarXMileage": "MileageData.remain",
-    #     "CarStatus": "BusData.status",
-    #     "CarRBatteryStatus": "FuelCellData.status",
-    #     "CarH2Left": "GasData.remain",
-    #     "CarH2Tmp": "GasData.bottle_temp",
-    #     "CarDBatteryStatus": "PowerBatteryData.status",
-    #     "CarDBatteryLeft": "PowerBatteryData.remain",
-    #     "CarDBatteryTmp": "PowerBatteryData.temp",
-    #     "CarSpeed": "BusData.speed",
-    #     "CarGeal": "BusData.gear",
-    #     "CarFault": "BusData.failure_info",
-    #     "CarRpm": "MotorData.speed",
-    #     "CarTorque": "MotorData.torque",
-    #     "CarVoltage": "MotorData.voltage",
-    #     "CarCurrent": "MotorData.current",
-    #     "CarTmp": "MotorData.temp",
-    #     "CarRBatteryVoltage": "FuelCellData.voltage",
-    #     "CarRBatteryCurrent": "FuelCellData.current",
-    #     "CarRBatteryTmp": "FuelCellData.temp",
-    #     "CarDBatteryVoltage": "PowerBatteryData.voltage",
-    #     "CarDBatteryCurrent": "PowerBatteryData.current",
-    #     "CarLng": "BusData.longitude",
-    #     "CarLat": "BusData.latitude",
-    #     "CarCarbon": "EnergySavingData.emission_reduction",
-    #     "CarEnergy": "EnergySavingData.energy_saving_amount",
-    #     "CarSum": "EnergySavingData.energy_saving_money",
-    # }
-
     # def get(self, request, *args, **kwargs):
     #     return Response(True)
 
@@ -72,15 +40,3 @@ class CollectVehicleData(APIView):
             return Response(True)
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # def process_data(self, reqdata):
-    #     result = {}
-    #     for reqKey, value in reqdata.items():
-    #         if not self.mapping.has_key(str(reqKey)):
-    #             continue
-    #         target = self.mapping[str(reqKey)]
-    #         [model, field] = target.split(".")
-    #         if not result.has_key(model):
-    #             result[model] = []
-    #         result[model].append((field, value))
-    #     return result

@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url
 from views import send_sms
 
 urlpatterns = [

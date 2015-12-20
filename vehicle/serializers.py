@@ -1,11 +1,12 @@
 # -*- coding:utf-8 -*-
 
 from rest_framework import serializers
-from .models import Bus
+from models import Bus, BusData, MileageData
 from django.apps import apps
 from django.utils import timezone
 
 
+# Serializer for terminal api
 class TapiSerializer(serializers.Serializer):
 
     CarID = serializers.CharField()
@@ -71,7 +72,6 @@ class TapiSerializer(serializers.Serializer):
     }
 
     def create(self, validated_data):
-        # print('------------ serializer ------------')
         # print(validated_data)
         ret = self.process_data(validated_data)
         # print(ret)
@@ -104,3 +104,22 @@ class TapiSerializer(serializers.Serializer):
                 result[model] = {}
             result[model][field] = value
         return result
+
+
+
+class BusDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BusData
+
+
+class MileageDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MileageData
+
+
+class BusSerializer(serializers.ModelSerializer):
+    busdata = BusDataSerializer()
+
+    class Meta:
+        model = Bus
+        fields = ('bid', 'plate_number', 'busdata', )

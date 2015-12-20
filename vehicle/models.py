@@ -14,6 +14,14 @@ class Bus(models.Model):
     plate_number = models.CharField(_("Plate number"), max_length=45)
     drivers = models.ManyToManyField(User, verbose_name=_("Drivers"))
 
+    @property
+    def busdata(self):
+        return self.busdata_set.latest('timestamp')
+
+    class Meta:
+        verbose_name = _("Bus")
+        verbose_name_plural = _("Buses")
+
 
 class BaseBusData(models.Model):
     bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
