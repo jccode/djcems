@@ -18,13 +18,14 @@ from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken import views
 from userprofile.views import UserViewSet, GroupViewSet
+from beacon.views import BeaconViewSet
 
 
 # rest_framework routes
 router = routers.DefaultRouter()
 router.register(r'api/user', UserViewSet)
 router.register(r'api/group', GroupViewSet)
-
+router.register(r'api/beacon', BeaconViewSet)
 
 
 urlpatterns = [

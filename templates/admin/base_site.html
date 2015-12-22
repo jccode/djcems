@@ -1,0 +1,8 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Refire App admin' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{% trans 'Refire App admin' %}</a></h1>
+{% endblock %}

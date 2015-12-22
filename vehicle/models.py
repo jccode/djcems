@@ -18,6 +18,9 @@ class Bus(models.Model):
     def busdata(self):
         return self.busdata_set.latest('timestamp')
 
+    def __unicode__(self):
+        return "Bus (%s, %s)" % (self.bid, self.plate_number)
+
     class Meta:
         verbose_name = _("Bus")
         verbose_name_plural = _("Buses")

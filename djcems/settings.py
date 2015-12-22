@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'corsheaders',
     'userprofile',
     'vehicle',
+    'beacon',
+    'news',
     'hello',
 )
 
@@ -63,7 +65,9 @@ ROOT_URLCONF = 'djcems.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
