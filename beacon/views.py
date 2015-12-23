@@ -6,7 +6,7 @@ from serializers import BeaconSerializer
 # Create your views here.
 
 
-class BeaconViewSet(viewsets.ModelViewSet):
+class BeaconViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Beacon.objects.all()
     serializer_class = BeaconSerializer
 

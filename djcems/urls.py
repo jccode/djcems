@@ -20,6 +20,7 @@ from rest_framework.authtoken import views
 from filebrowser.sites import site
 from userprofile.views import UserViewSet, GroupViewSet
 from beacon.views import BeaconViewSet
+from news.views import NewsViewSet
 
 
 # rest_framework routes
@@ -27,6 +28,7 @@ router = routers.DefaultRouter()
 router.register(r'api/user', UserViewSet)
 router.register(r'api/group', GroupViewSet)
 router.register(r'api/beacon', BeaconViewSet)
+router.register(r'api/news', NewsViewSet)
 
 
 urlpatterns = [

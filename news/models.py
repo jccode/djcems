@@ -16,3 +16,7 @@ class News(models.Model):
     content = tinymce_models.HTMLField(_("Content"))
     headimg = models.ImageField(_("Head image"))
     published = models.BooleanField(_("Published"))
+
+    class Meta:
+        verbose_name = _('News')
+        verbose_name_plural = _('News')
