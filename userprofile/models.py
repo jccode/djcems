@@ -23,8 +23,12 @@ class UserProfile(models.Model):
     age = models.IntegerField(null=True, blank=True)
     avatar = models.ImageField(upload_to="avatar", blank=True, null=True)
 
+    def __unicode__(self):
+        return self.user.username
+
 
 mobile_pattern = re.compile(r'^(13|15|18)\d{9}$')
+
 
 def assure_user_profile_exist(pk):
     user = User.objects.get(pk=pk)

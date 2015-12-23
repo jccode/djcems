@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'filebrowser',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +47,10 @@ INSTALLED_APPS = (
     'beacon',
     'news',
     'hello',
+
+    # wysiwyg
+    'django_wysiwyg',
+    'tinymce',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,9 +126,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "media"),
+]
 
 # Cache
 
@@ -212,3 +224,15 @@ SMS = {
         'password': 'e6a52c828d56b46129fbf85c4cd164b3', # md5 already
     }
 }
+
+# WYSIWYG
+DJANGO_WYSIWYG_FLAVOR = "tinymce"
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+
+# FILEBROWSER_MEDIA_URL = STATIC_URL + 'upload/'

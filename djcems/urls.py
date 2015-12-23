@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken import views
+from filebrowser.sites import site
 from userprofile.views import UserViewSet, GroupViewSet
 from beacon.views import BeaconViewSet
 
@@ -30,6 +31,8 @@ router.register(r'api/beacon', BeaconViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^admin/filebrowser/', include(site.urls)),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-token-auth/', views.obtain_auth_token),
@@ -39,4 +42,14 @@ urlpatterns = [
     url(r'^sms/', include('sms.urls')),
     url(r'^beacon/', include('beacon.urls')),
     url(r'^hello/', include('hello.urls')),
+
+    url(r'^tinymce/', include('tinymce.urls')),
 ]
+
+
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
