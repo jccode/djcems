@@ -7,5 +7,5 @@ from serializers import NewsSerializer
 
 
 class NewsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = News.objects.all()
+    queryset = News.objects.filter(published=True)
     serializer_class = NewsSerializer

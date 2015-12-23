@@ -13,7 +13,7 @@ class NewsAdminForm(forms.ModelForm):
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     form = NewsAdminForm
-    list_display = ('title', 'author', 'timestamp')
+    list_display = ('title', 'author', 'timestamp', 'published')
     fields = ('title', 'brief', 'content', 'headimg', 'published')
 
     def save_model(self, request, obj, form, change):
