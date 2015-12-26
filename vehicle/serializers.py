@@ -4,6 +4,7 @@ from rest_framework import serializers
 from models import Bus, BusData, MileageData
 from django.apps import apps
 from django.utils import timezone
+from services import busStorage
 
 
 # Serializer for terminal api
@@ -72,7 +73,6 @@ class TapiSerializer(serializers.Serializer):
     }
 
     def create(self, validated_data):
-        # print(validated_data)
         ret = self.process_data(validated_data)
         # print(ret)
         bid = validated_data['CarID']
@@ -80,6 +80,9 @@ class TapiSerializer(serializers.Serializer):
             bus = Bus.objects.get(bid=bid)
         except Exception:
             bus = Bus.objects.create(bid=bid)
+
+        cache_obj = busStorage.get(bid)
+        # print(cache_obj)
 
         now = timezone.now()
         for modelName, objs in ret.items():
@@ -89,8 +92,12 @@ class TapiSerializer(serializers.Serializer):
             objs['bus'] = bus
             objs['timestamp'] = now
             model.objects.create(**objs)
-            # m = model(**objs)
-            # m.save()
+
+            # update cache obj
+            cache_obj[modelName].update(objs)
+
+        # print(cache_obj)
+        busStorage.set(bid, cache_obj)
         return bus
 
     def process_data(self, reqdata):
@@ -118,8 +125,12 @@ class MileageDataSerializer(serializers.ModelSerializer):
 
 
 class BusSerializer(serializers.ModelSerializer):
-    busdata = BusDataSerializer()
+    busdata = BusDataSerializer(read_only=True)
 
     class Meta:
         model = Bus
         fields = ('bid', 'plate_number', 'busdata', )
+
+    # def update(self, instance, validated_data):
+    #     instance.busdata = validated_data['busdata']
+    #     return instance
