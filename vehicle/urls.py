@@ -5,5 +5,5 @@ from views import busData
 
 urlpatterns = [
     url('tapi/$', CollectVehicleData.as_view()),
-    url('busdata/$', busData),
+    url('busdata/(?P<bid>\w+)/$', busData),
 ]

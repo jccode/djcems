@@ -88,13 +88,12 @@ class TapiSerializer(serializers.Serializer):
         for modelName, objs in ret.items():
             if modelName == 'Bus':
                 continue
+            # update cache obj
+            cache_obj[modelName].update(objs)
             model = apps.get_model(app_label='vehicle', model_name=modelName)
             objs['bus'] = bus
             objs['timestamp'] = now
             model.objects.create(**objs)
-
-            # update cache obj
-            cache_obj[modelName].update(objs)
 
         # print(cache_obj)
         busStorage.set(bid, cache_obj)

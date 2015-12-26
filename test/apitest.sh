@@ -2,7 +2,7 @@
 
 curl -H "Content-Type: application/json" -X POST -u tapi:tapi -d \
      '{"CarID":"10112322",
-     "CarTMileage":"10000",
+     "CarTMileage":"12000",
      "CarFMileage":"1023",
      "CarXMileage":"3211",
      "CarStatus":"2",
