@@ -4,5 +4,5 @@ from django.conf.urls import url
 from views import BeaconList
 
 urlpatterns = [
-    url('busbeacons/(?P<bid>.+)/$', BeaconList.as_view()), 
+    url('busbeacons/(?P<bid>.+)/$', BeaconList.as_view()),
 ]
