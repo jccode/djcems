@@ -22,6 +22,11 @@ class UserProfile(models.Model):
     gender = models.IntegerField(choices=GENDER, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     avatar = models.ImageField(upload_to="avatar", blank=True, null=True)
+    nickname = models.CharField(max_length=40, null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
+    qq = models.CharField(max_length=20, null=True, blank=True)
+    wechat = models.CharField(max_length=40, null=True, blank=True)
+    weibo = models.CharField(max_length=40, null=True, blank=True)
 
     def __unicode__(self):
         return self.user.username

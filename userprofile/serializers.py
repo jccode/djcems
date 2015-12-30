@@ -42,6 +42,25 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
+
+    # def create(self, validated_data):
+    #     uid = validated_data.pop('uid', None)
+    #     instance = self.Meta.model(**validated_data)
+    #     if uid is not None:
+    #         user = User.objects.get(id=uid)
+    #         instance.user = user
+    #         instance.save()
+    #         return instance
+    #     else:
+    #         raise "uid is not exist"
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance
+
     class Meta:
         model = UserProfile
-        fields = ('user', 'phone', 'gender', 'age', 'avatar')
+        fields = ('user', 'phone', 'gender', 'age', 'avatar', 'nickname', 'birthday', 'qq', 'wechat', 'weibo')
+

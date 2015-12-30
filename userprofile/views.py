@@ -1,15 +1,20 @@
 # -*- coding:utf-8 -*-
 
-from django.shortcuts import render
+import logging
+
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, status
-from .serializers import UserSerializer, GroupSerializer, UserProfileSerializer
-from rest_framework.decorators import api_view, authentication_classes, renderer_classes, permission_classes
-from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 from djcems.utils import rest_anonymous
+from models import UserProfile
+from rest_framework import viewsets, status
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import UserSerializer, GroupSerializer, UserProfileSerializer
 
 # Create your views here.
+
+logger = logging.getLogger(__name__)
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -22,6 +27,11 @@ class UserViewSet(viewsets.ModelViewSet):
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
 
 
 @api_view(['GET'])
@@ -57,6 +67,12 @@ def signup(request, *args, **kwargs):
         user = serialized.save()
         ret = serialized.data
         token = Token.objects.get(user=user)
+        try:
+            g = Group.objects.get(name='user')
+            g.user_set.add(user)
+            ret['groups'] = ['user']
+        except Exception:
+            logger.debug("'user' group isn't exist. ")
         ret['id'] = user.id
         ret['token'] = token.key
         return Response(ret)

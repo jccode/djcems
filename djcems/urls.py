@@ -19,7 +19,7 @@ from django.conf import settings
 from rest_framework import routers
 from rest_framework.authtoken import views
 from filebrowser.sites import site
-from userprofile.views import UserViewSet, GroupViewSet
+from userprofile.views import UserViewSet, GroupViewSet, UserProfileViewSet
 from beacon.views import BeaconViewSet
 from news.views import NewsViewSet
 
@@ -28,6 +28,7 @@ from news.views import NewsViewSet
 router = routers.DefaultRouter()
 router.register(r'api/user', UserViewSet)
 router.register(r'api/group', GroupViewSet)
+router.register(r'api/userprofile', UserProfileViewSet)
 router.register(r'api/beacon', BeaconViewSet)
 router.register(r'api/news', NewsViewSet)
 
