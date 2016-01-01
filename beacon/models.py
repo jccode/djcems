@@ -12,5 +12,6 @@ class Beacon(models.Model):
     uuid = models.CharField(_("UUID"), max_length=45)
     major = models.IntegerField(_("Major"))
     minor = models.IntegerField(_("Minor"))
-    comment = models.CharField(_("Comment"), max_length=45)
-    stick_on = models.ManyToManyField(Bus, verbose_name=_("Stick on"))
+    mac = models.CharField(_("MAC"), max_length=45, null=True, blank=True)
+    comment = models.CharField(_("Comment"), max_length=45, null=True, blank=True)
+    stick_on = models.ManyToManyField(Bus, verbose_name=_("Stick on"), blank=True)

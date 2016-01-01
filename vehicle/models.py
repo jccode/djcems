@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 class Bus(models.Model):
     bid = models.CharField(_("Bus unique id"), max_length=45)
     plate_number = models.CharField(_("Plate number"), max_length=45)
-    drivers = models.ManyToManyField(User, verbose_name=_("Drivers"))
+    drivers = models.ManyToManyField(User, verbose_name=_("Drivers"), blank=True)
 
     @property
     def busdata(self):

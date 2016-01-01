@@ -8,7 +8,7 @@ class BusAdmin(admin.ModelAdmin):
 
     def formfield_for_manytomany(self, db_field, request=None, **kwargs):
         if db_field.name == "drivers":
-            kwargs["queryset"] = User.objects.filter(is_staff=True)
+            kwargs["queryset"] = User.objects.filter(is_staff=True).filter(groups__name="driver")
         return super(BusAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 
