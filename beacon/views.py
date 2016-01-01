@@ -1,4 +1,4 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, permissions
 from models import Beacon
 from vehicle.models import Bus
 from serializers import BeaconSerializer
@@ -9,6 +9,7 @@ from serializers import BeaconSerializer
 class BeaconViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Beacon.objects.all()
     serializer_class = BeaconSerializer
+    permission_classes = (permissions.AllowAny,)
 
 
 class BeaconList(generics.ListAPIView):
