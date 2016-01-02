@@ -15,3 +15,16 @@ class Beacon(models.Model):
     mac = models.CharField(_("MAC"), max_length=45, null=True, blank=True)
     comment = models.CharField(_("Comment"), max_length=45, null=True, blank=True)
     stick_on = models.ManyToManyField(Bus, verbose_name=_("Stick on"), blank=True)
+    enabled = models.BooleanField(_("Enabled"), blank=True)
+
+
+class BeaconCheckIn(models.Model):
+    EVENT = (
+        (0, _("enter")),
+        (1, _("leave")),
+        (2, _("stay")),
+    )
+    uid = models.IntegerField(_("User id"))
+    bid = models.CharField(_("Bus unique id"), max_length=45)
+    event = models.IntegerField(_("event"), choices=EVENT)
+    timestamp = models.DateTimeField()

@@ -5,4 +5,4 @@ from models import Beacon
 
 @admin.register(Beacon)
 class BeaconAdmin(admin.ModelAdmin):
-    list_display = ('identifier', 'uuid', 'major', 'minor', 'comment',)
+    list_display = ('identifier', 'uuid', 'major', 'minor', 'comment', 'enabled')

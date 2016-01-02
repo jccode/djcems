@@ -124,11 +124,11 @@ class MileageDataSerializer(serializers.ModelSerializer):
 
 
 class BusSerializer(serializers.ModelSerializer):
-    busdata = BusDataSerializer(read_only=True)
+    # busdata = BusDataSerializer(read_only=True)
 
     class Meta:
         model = Bus
-        fields = ('bid', 'plate_number', 'busdata', )
+        fields = ('bid', 'plate_number', )
 
     # def update(self, instance, validated_data):
     #     instance.busdata = validated_data['busdata']
