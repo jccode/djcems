@@ -90,6 +90,8 @@ class TapiSerializer(serializers.Serializer):
                 continue
             # update cache obj
             cache_obj[modelName].update(objs)
+            cache_obj[modelName]['timestamp'] = now
+
             model = apps.get_model(app_label='vehicle', model_name=modelName)
             objs['bus'] = bus
             objs['timestamp'] = now
