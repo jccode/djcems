@@ -88,7 +88,12 @@ class TapiSerializer(serializers.Serializer):
         for modelName, objs in ret.items():
             if modelName == 'Bus':
                 continue
+
             # update cache obj
+            if modelName == 'EnergySavingData':
+                old = cache_obj.get(modelName, {})
+                for key, value in objs.items():
+                    objs[key] = old.get(key, 0) + value
             cache_obj[modelName].update(objs)
             cache_obj[modelName]['timestamp'] = now
 

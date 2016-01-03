@@ -4,6 +4,7 @@ from django.core.cache import cache
 from django.forms.models import model_to_dict
 from django.shortcuts import _get_queryset
 from django.db import models
+from django.db.models import Sum
 from models import Bus
 
 
@@ -100,8 +101,9 @@ class BusStorage:
             gas_data = latest_or_empty(bus.gasdata_set, "timestamp")
             fuel_cell_data = latest_or_empty(bus.fuelcelldata_set, "timestamp")
             power_battery_data = latest_or_empty(bus.powerbatterydata_set, "timestamp")
-            energy_saving_data = latest_or_empty(bus.energysavingdata_set, "timestamp")
             motor_data = latest_or_empty(bus.motordata_set, "timestamp")
+            # energy_saving_data = latest_or_empty(bus.energysavingdata_set, "timestamp")
+            energy_saving_data = bus.energysavingdata_set.aggregate(Sum("energy_saving_amount"), Sum("energy_saving_money"), Sum("emission_reduction"))
 
             # turn these objects to dict and return.
             ret = model_to_dict(bus, None, ['drivers', u'id'])
@@ -110,8 +112,8 @@ class BusStorage:
             ret["GasData"] = self._to_dict(gas_data, None, [u'id'])
             ret["FuelCellData"] = self._to_dict(fuel_cell_data, None, [u'id'])
             ret["PowerBatteryData"] = self._to_dict(power_battery_data, None, [u'id'])
-            ret["EnergySavingData"] = self._to_dict(energy_saving_data, None, [u'id'])
             ret["MotorData"] = self._to_dict(motor_data, None, [u'id'])
+            ret["EnergySavingData"] = dict([(key[0:-5], 0 if value is None else value) for key,value in energy_saving_data.items()])
             return ret
 
         except Bus.DoesNotExist:
