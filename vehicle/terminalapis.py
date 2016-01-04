@@ -13,6 +13,15 @@ from .serializers import TapiSerializer
 logger = logging.getLogger(__name__)
 
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
 class CollectVehicleData(APIView):
 
     authentication_classes = (authentication.BasicAuthentication, )
@@ -31,8 +40,9 @@ class CollectVehicleData(APIView):
         :param kwargs:
         :return:
         """
-        logger.debug(" ------------ CALLING TERMINAL API ----------------")
-        logger.debug(request.data)
+        #logger.debug(" ------------ CALLING TERMINAL API ----------------")
+        ip = get_client_ip(request)
+        logger.debug(request.data, extra={"clientip":ip})
 
         serializer = TapiSerializer(data=request.data)
         if serializer.is_valid():

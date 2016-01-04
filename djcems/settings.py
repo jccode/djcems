@@ -190,6 +190,11 @@ CORS_ALLOW_CREDENTIALS = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[%(levelname)s] [%(clientip)s] [%(asctime)s] [%(module)s] [%(process)d] [%(thread)d] %(message)s'
+        }
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
@@ -197,7 +202,8 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log')
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose'
         },
     },
     'loggers': {
@@ -214,7 +220,7 @@ LOGGING = {
         'vehicle': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
-            'propagate': True
+            'propagate': True,
         }
     }
 }
