@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'beacon',
     'news',
     'hello',
+    'misc',
 
     # wysiwyg
     'django_wysiwyg',

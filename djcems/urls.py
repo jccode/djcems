@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^sms/', include('sms.urls')),
     url(r'^beacon/', include('beacon.urls')),
     url(r'^hello/', include('hello.urls')),
+    url(r'^', include('misc.urls')),
 
     url(r'^tinymce/', include('tinymce.urls')),
 ]

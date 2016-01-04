@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from django.core.cache import cache
+from django.shortcuts import redirect
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
@@ -46,3 +47,7 @@ class ShareColorView(APIView):
             color = request.data.get(self.SHARE_COLOR)
             cache.set(self.SHARE_COLOR, color, 30)
             return Response("share color is set to %s" % color)
+
+
+def redirecttest(request):
+    return redirect("/media/1.jpg")
