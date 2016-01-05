@@ -40,9 +40,8 @@ class CollectVehicleData(APIView):
         :param kwargs:
         :return:
         """
-        #logger.debug(" ------------ CALLING TERMINAL API ----------------")
         ip = get_client_ip(request)
-        logger.debug(request.data, extra={"clientip":ip})
+        logger.debug("receive data from terminal", request.data, extra={"clientip":ip})
 
         serializer = TapiSerializer(data=request.data)
         if serializer.is_valid():

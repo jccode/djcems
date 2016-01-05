@@ -19,12 +19,18 @@ class Beacon(models.Model):
 
 
 class BeaconCheckIn(models.Model):
-    EVENT = (
-        (0, _("enter")),
-        (1, _("leave")),
-        (2, _("stay")),
-    )
+    # EVENT = (
+    #     (0, _("enter")),
+    #     (1, _("leave")),
+    #     (2, _("stay")),
+    # )
     uid = models.IntegerField(_("User id"))
     bid = models.CharField(_("Bus unique id"), max_length=45)
-    event = models.IntegerField(_("event"), choices=EVENT)
-    timestamp = models.DateTimeField()
+    #event = models.IntegerField(_("event"), choices=EVENT)
+    #timestamp = models.DateTimeField()
+    on_time = models.DateTimeField(_("On time"), null=True, blank=True)
+    off_time = models.DateTimeField(_("Off time"), null=True, blank=True)
+    last_update = models.DateTimeField(_("Last update time"), null=True, blank=True)
+    energy_saving_amount = models.IntegerField(_("Energy saving amount"), null=True, blank=True)
+    energy_saving_money = models.IntegerField(_("Energy saving money"), null=True, blank=True)
+    emission_reduction = models.IntegerField(_("Emission reduction"), null=True, blank=True)
