@@ -41,11 +41,13 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-token-auth/', views.obtain_auth_token),
 
+
     url(r'^userprofile/', include('userprofile.urls')),
     url(r'^vehicle/', include('vehicle.urls')),
     url(r'^sms/', include('sms.urls')),
     url(r'^beacon/', include('beacon.urls')),
     url(r'^hello/', include('hello.urls')),
+    url(r'^datastat/', include('datastat.urls')),
     url(r'^', include('misc.urls')),
 
     url(r'^tinymce/', include('tinymce.urls')),

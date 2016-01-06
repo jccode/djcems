@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'news',
     'hello',
     'misc',
+    'datastat',
 
     # wysiwyg
     'django_wysiwyg',
