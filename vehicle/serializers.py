@@ -5,6 +5,7 @@ from models import Bus, BusData, MileageData
 from django.apps import apps
 from django.utils import timezone
 from services import busStorage
+from beacon.services import checkinStorage
 
 
 # Serializer for terminal api
@@ -91,6 +92,7 @@ class TapiSerializer(serializers.Serializer):
 
             # update cache obj
             if modelName == 'EnergySavingData':
+                checkinStorage.publish_busdata(bid, objs)
                 old = cache_obj.get(modelName, {})
                 for key, value in objs.items():
                     objs[key] = old.get(key, 0) + value

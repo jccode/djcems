@@ -2,12 +2,12 @@
 from rest_framework import serializers
 from models import UserSavingEnergyPerDay, UserSavingEnergyPerMonth
 
-class UserSavingEnergyPerDaySerilizer(serializers.Serializer):
+class UserSavingEnergyPerDaySerilizer(serializers.ModelSerializer):
     class Meta:
         model = UserSavingEnergyPerDay
 
 
-class UserSavingEnergyPerMonthSerilizer(serializers.Serializer):
+class UserSavingEnergyPerMonthSerilizer(serializers.ModelSerializer):
     class Meta:
         model = UserSavingEnergyPerMonth
 
