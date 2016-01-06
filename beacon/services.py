@@ -17,12 +17,14 @@ class BeaconCheckinStorage:
                 "energy_saving_money": 0,
                 "emission_reduction": 0,
             }
+            self._set_cache(bid, storage)
         return storage
 
     def unsubscribe_busdata(self, bid, uid):
         storage = self._get_cache(bid)
         try:
             data = storage.pop(uid)
+            self._set_cache(bid, storage)
             return data
         except KeyError:
             return {}
@@ -32,8 +34,9 @@ class BeaconCheckinStorage:
         for uid, udata in storage.items():
             udata["energy_saving_amount"] = udata["energy_saving_amount"]+busdata["energy_saving_amount"]
             udata["energy_saving_money"] = udata["energy_saving_money"]+busdata["energy_saving_money"]
-            udata["energy_saving_amount"] = udata["energy_saving_amount"]+busdata["energy_saving_amount"]
+            udata["emission_reduction"] = udata["emission_reduction"]+busdata["emission_reduction"]
             storage[uid] = udata
+        self._set_cache(bid, storage)
         return storage
 
     def get(self, bid, uid):
@@ -43,8 +46,11 @@ class BeaconCheckinStorage:
         data = cache.get(self.CACHE_KEY_PREFIX + bid)
         if not data:
             data = {}
-            cache.set(self.CACHE_KEY_PREFIX + bid, data, None)
+            self._set_cache(bid, data)
         return data
+
+    def _set_cache(self, bid, data):
+        cache.set(self.CACHE_KEY_PREFIX + bid, data, None)
 
 
 checkinStorage = BeaconCheckinStorage()

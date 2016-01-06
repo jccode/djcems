@@ -54,7 +54,7 @@ class BeaconCheckin(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def onbus(self, uid, bid, timestamp):
-        print("on bus:")
+        #print("on bus:")
         data = {
             "uid": uid,
             "bid": bid,
@@ -68,7 +68,7 @@ class BeaconCheckin(views.APIView):
         return data
 
     def offbus(self, uid, bid, timestamp):
-        print("off bus:")
+        #print("off bus:")
         checkins = BeaconCheckIn.objects.filter(uid=uid, bid=bid).order_by("-on_time")
         if len(checkins) > 0:
             checkin = checkins[0]
@@ -82,7 +82,7 @@ class BeaconCheckin(views.APIView):
                 checkin.save()
 
     def staybus(self, uid, bid, timestamp):
-        print("stay bus:")
+        #print("stay bus:")
         checkins = BeaconCheckIn.objects.filter(uid=uid, bid=bid).order_by("-on_time")
         if len(checkins) > 0:
             checkin = checkins[0]
