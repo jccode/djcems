@@ -25,7 +25,7 @@ def get_client_ip(request):
 class CollectVehicleData(APIView):
 
     authentication_classes = (authentication.BasicAuthentication, )
-    permission_classes = (permissions.DjangoModelPermissions, )
+    permission_classes = (permissions.AllowAny,)  # (permissions.DjangoModelPermissions, )
     queryset = Bus.objects.all()
 
     # def get(self, request, *args, **kwargs):
