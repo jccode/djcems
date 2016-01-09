@@ -41,7 +41,7 @@ class CollectVehicleData(APIView):
         :return:
         """
         ip = get_client_ip(request)
-        logger.debug("receive data from terminal", request.data, extra={"clientip":ip})
+        logger.debug("[receive data from terminal.][" + str(request.data) + "]", extra={"clientip":ip})
 
         serializer = TapiSerializer(data=request.data)
         if serializer.is_valid():
