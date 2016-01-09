@@ -62,5 +62,7 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('user', 'phone', 'gender', 'age', 'avatar', 'nickname', 'birthday', 'qq', 'wechat', 'weibo')
+        fields = ('user', 'phone', 'avatar', 'nickname', 'birthday', 'qq', 'wechat', 'weibo')
+
+
 
