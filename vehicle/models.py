@@ -53,7 +53,7 @@ class BusData(BaseBusData):
         (2, 'N'),
         (3, 'D'),
     )
-    speed = models.IntegerField(_("Speed"), null=True, blank=True)
+    speed = models.FloatField(_("Speed"), null=True, blank=True)
     status = models.IntegerField(_("Vehicle status"), choices=STATUS, null=True, blank=True)
     gear = models.IntegerField(_("Gear"), choices=GEAR, null=True, blank=True)
     failure_info = models.IntegerField(_("Failure information"), null=True, blank=True)
@@ -62,14 +62,14 @@ class BusData(BaseBusData):
 
 
 class MileageData(BaseBusData):
-    total = models.IntegerField(_("Total milage"), null=True, blank=True)
-    section = models.IntegerField(_("Section milage"), null=True, blank=True)
-    remain = models.IntegerField(_("Available milage"), null=True, blank=True)
+    total = models.FloatField(_("Total milage"), null=True, blank=True)
+    section = models.FloatField(_("Section milage"), null=True, blank=True)
+    remain = models.FloatField(_("Available milage"), null=True, blank=True)
 
 
 class GasData(BaseBusData):
-    remain = models.IntegerField(_("Remain hydrogen"), null=True, blank=True)
-    bottle_temp = models.IntegerField(_("Hydrogen bottle temp."), null=True, blank=True)
+    remain = models.FloatField(_("Remain hydrogen"), null=True, blank=True)
+    bottle_temp = models.FloatField(_("Hydrogen bottle temp."), null=True, blank=True)
 
 
 class FuelCellData(BaseBusData):
@@ -82,28 +82,28 @@ class FuelCellData(BaseBusData):
         (2, _("stop")),
     )
     status = models.IntegerField(_("Fuel cell status"), choices=STATUS, null=True, blank=True)
-    voltage = models.IntegerField(_("Fuel cell voltage"), null=True, blank=True)
-    current = models.IntegerField(_("Fuel cell current"), null=True, blank=True)
-    temp = models.IntegerField(_("Fuel cell temperature"), null=True, blank=True)
+    voltage = models.FloatField(_("Fuel cell voltage"), null=True, blank=True)
+    current = models.FloatField(_("Fuel cell current"), null=True, blank=True)
+    temp = models.FloatField(_("Fuel cell temperature"), null=True, blank=True)
 
 
 class PowerBatteryData(BaseBusData):
     status = models.IntegerField(_("Battery status"), null=True, blank=True)
-    voltage = models.IntegerField(_("Battery voltage"), null=True, blank=True)
-    current = models.IntegerField(_("Battery current"), null=True, blank=True)
-    temp = models.IntegerField(_("Battery temperature"), null=True, blank=True)
-    remain = models.IntegerField(_("Battery left"), null=True, blank=True)
+    voltage = models.FloatField(_("Battery voltage"), null=True, blank=True)
+    current = models.FloatField(_("Battery current"), null=True, blank=True)
+    temp = models.FloatField(_("Battery temperature"), null=True, blank=True)
+    remain = models.FloatField(_("Battery left"), null=True, blank=True)
 
 
 class EnergySavingData(BaseBusData):
-    energy_saving_amount = models.IntegerField(_("Energy saving amount"), null=True, blank=True)
-    energy_saving_money = models.IntegerField(_("Energy saving money"), null=True, blank=True)
-    emission_reduction = models.IntegerField(_("Emission reduction"), null=True, blank=True)
+    energy_saving_amount = models.FloatField(_("Energy saving amount"), null=True, blank=True)
+    energy_saving_money = models.FloatField(_("Energy saving money"), null=True, blank=True)
+    emission_reduction = models.FloatField(_("Emission reduction"), null=True, blank=True)
 
 
 class MotorData(BaseBusData):
-    speed = models.IntegerField(_("Motor speed"), null=True, blank=True)
-    torque = models.IntegerField(_("Motor torque"), null=True, blank=True)
-    voltage = models.IntegerField(_("Motor voltage"), null=True, blank=True)
-    current = models.IntegerField(_("Motor current"), null=True, blank=True)
-    temp = models.IntegerField(_("Motor temperature"), null=True, blank=True)
+    speed = models.FloatField(_("Motor speed"), null=True, blank=True)
+    torque = models.FloatField(_("Motor torque"), null=True, blank=True)
+    voltage = models.FloatField(_("Motor voltage"), null=True, blank=True)
+    current = models.FloatField(_("Motor current"), null=True, blank=True)
+    temp = models.FloatField(_("Motor temperature"), null=True, blank=True)
