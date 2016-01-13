@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'django_logtail',
     'userprofile',
     'vehicle',
     'beacon',
@@ -249,3 +250,8 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # FILEBROWSER_MEDIA_URL = STATIC_URL + 'upload/'
+
+LOGTAIL_FILES = {
+    'accesslog': '/var/log/apache2/app-access.log',
+    'django': os.path.join(BASE_DIR, 'apilog.log')
+}

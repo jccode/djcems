@@ -3,6 +3,7 @@ Django==1.9
 django-cors-headers==1.1.0
 -e git+git@github.com:jccode/django-filebrowser-no-grappelli.git@b4e346b83968aa962dea9e65951309a5804a47fa#egg=django_filebrowser_no_grappelli-master
 django-filter==0.11.0
+-e git+https://github.com/jccode/django_logtail.git@19ffc7564faa1ae5a8e378ab662ef4023f13c268#egg=django_logtail-master
 django-redis==4.3.0
 django-tinymce==2.0.6
 django-wysiwyg==0.7.1
