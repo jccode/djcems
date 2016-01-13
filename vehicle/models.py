@@ -53,23 +53,23 @@ class BusData(BaseBusData):
         (2, 'N'),
         (3, 'D'),
     )
-    speed = models.FloatField(_("Speed"), null=True, blank=True)
-    status = models.IntegerField(_("Vehicle status"), choices=STATUS, null=True, blank=True)
-    gear = models.IntegerField(_("Gear"), choices=GEAR, null=True, blank=True)
-    failure_info = models.IntegerField(_("Failure information"), null=True, blank=True)
-    longitude = models.FloatField(_("Longitude"), null=True, blank=True)
-    latitude = models.FloatField(_("Latitude"), null=True, blank=True)
+    speed = models.CharField(_("Speed"), null=True, blank=True, max_length=20)
+    status = models.CharField(_("Vehicle status"), null=True, blank=True, max_length=20)
+    gear = models.CharField(_("Gear"), null=True, blank=True, max_length=20)
+    failure_info = models.CharField(_("Failure information"), null=True, blank=True, max_length=20)
+    longitude = models.CharField(_("Longitude"), null=True, blank=True, max_length=20)
+    latitude = models.CharField(_("Latitude"), null=True, blank=True, max_length=20)
 
 
 class MileageData(BaseBusData):
-    total = models.FloatField(_("Total milage"), null=True, blank=True)
-    section = models.FloatField(_("Section milage"), null=True, blank=True)
-    remain = models.FloatField(_("Available milage"), null=True, blank=True)
+    total = models.CharField(_("Total milage"), null=True, blank=True, max_length=20)
+    section = models.CharField(_("Section milage"), null=True, blank=True, max_length=20)
+    remain = models.CharField(_("Available milage"), null=True, blank=True, max_length=20)
 
 
 class GasData(BaseBusData):
-    remain = models.FloatField(_("Remain hydrogen"), null=True, blank=True)
-    bottle_temp = models.FloatField(_("Hydrogen bottle temp."), null=True, blank=True)
+    remain = models.CharField(_("Remain hydrogen"), null=True, blank=True, max_length=20)
+    bottle_temp = models.CharField(_("Hydrogen bottle temp."), null=True, blank=True, max_length=20)
 
 
 class FuelCellData(BaseBusData):
@@ -81,29 +81,29 @@ class FuelCellData(BaseBusData):
         # Translators: stop / 停止
         (2, _("stop")),
     )
-    status = models.IntegerField(_("Fuel cell status"), choices=STATUS, null=True, blank=True)
-    voltage = models.FloatField(_("Fuel cell voltage"), null=True, blank=True)
-    current = models.FloatField(_("Fuel cell current"), null=True, blank=True)
-    temp = models.FloatField(_("Fuel cell temperature"), null=True, blank=True)
+    status = models.CharField(_("Fuel cell status"), null=True, blank=True, max_length=20)
+    voltage = models.CharField(_("Fuel cell voltage"), null=True, blank=True, max_length=20)
+    current = models.CharField(_("Fuel cell current"), null=True, blank=True, max_length=20)
+    temp = models.CharField(_("Fuel cell temperature"), null=True, blank=True, max_length=20)
 
 
 class PowerBatteryData(BaseBusData):
-    status = models.IntegerField(_("Battery status"), null=True, blank=True)
-    voltage = models.FloatField(_("Battery voltage"), null=True, blank=True)
-    current = models.FloatField(_("Battery current"), null=True, blank=True)
-    temp = models.FloatField(_("Battery temperature"), null=True, blank=True)
-    remain = models.FloatField(_("Battery left"), null=True, blank=True)
+    status = models.CharField(_("Battery status"), null=True, blank=True, max_length=20)
+    voltage = models.CharField(_("Battery voltage"), null=True, blank=True, max_length=20)
+    current = models.CharField(_("Battery current"), null=True, blank=True, max_length=20)
+    temp = models.CharField(_("Battery temperature"), null=True, blank=True, max_length=20)
+    remain = models.CharField(_("Battery left"), null=True, blank=True, max_length=20)
 
 
 class EnergySavingData(BaseBusData):
-    energy_saving_amount = models.FloatField(_("Energy saving amount"), null=True, blank=True)
-    energy_saving_money = models.FloatField(_("Energy saving money"), null=True, blank=True)
-    emission_reduction = models.FloatField(_("Emission reduction"), null=True, blank=True)
+    energy_saving_amount = models.CharField(_("Energy saving amount"), null=True, blank=True, max_length=20)
+    energy_saving_money = models.CharField(_("Energy saving money"), null=True, blank=True, max_length=20)
+    emission_reduction = models.CharField(_("Emission reduction"), null=True, blank=True, max_length=20)
 
 
 class MotorData(BaseBusData):
-    speed = models.FloatField(_("Motor speed"), null=True, blank=True)
-    torque = models.FloatField(_("Motor torque"), null=True, blank=True)
-    voltage = models.FloatField(_("Motor voltage"), null=True, blank=True)
-    current = models.FloatField(_("Motor current"), null=True, blank=True)
-    temp = models.FloatField(_("Motor temperature"), null=True, blank=True)
+    speed = models.CharField(_("Motor speed"), null=True, blank=True, max_length=20)
+    torque = models.CharField(_("Motor torque"), null=True, blank=True, max_length=20)
+    voltage = models.CharField(_("Motor voltage"), null=True, blank=True, max_length=20)
+    current = models.CharField(_("Motor current"), null=True, blank=True, max_length=20)
+    temp = models.CharField(_("Motor temperature"), null=True, blank=True, max_length=20)

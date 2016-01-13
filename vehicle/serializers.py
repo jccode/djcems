@@ -2,44 +2,47 @@
 
 from rest_framework import serializers
 from models import Bus, BusData, MileageData
+import logging
 from django.apps import apps
 from django.utils import timezone
 from services import busStorage
 from beacon.services import checkinStorage
 
 
+logger = logging.getLogger(__name__)
+
 # Serializer for terminal api
 class TapiSerializer(serializers.Serializer):
 
     CarID = serializers.CharField()
-    CarTMileage = serializers.FloatField(required=False, allow_null=True)
-    CarFMileage = serializers.FloatField(required=False, allow_null=True)
-    CarXMileage = serializers.FloatField(required=False, allow_null=True)
-    CarStatus = serializers.IntegerField(required=False, allow_null=True, min_value=0, max_value=4)
-    CarRBatteryStatus = serializers.IntegerField(required=False, allow_null=True, min_value=0, max_value=2)
-    CarH2Left = serializers.FloatField(required=False, allow_null=True, min_value=0, max_value=100)
-    CarH2Tmp = serializers.FloatField(required=False, allow_null=True)
-    CarDBatteryStatus = serializers.IntegerField(required=False, allow_null=True, min_value=0, max_value=2)
-    CarDBatteryLeft = serializers.FloatField(required=False, allow_null=True)
-    CarDBatteryTmp = serializers.FloatField(required=False, allow_null=True)
-    CarSpeed = serializers.FloatField(required=False, allow_null=True)
-    CarGeal = serializers.IntegerField(required=False, allow_null=True, min_value=0, max_value=2)
-    CarFault = serializers.IntegerField(required=False, allow_null=True, min_value=0, max_value=2)
-    CarRpm = serializers.FloatField(required=False, allow_null=True)
-    CarTorque = serializers.FloatField(required=False, allow_null=True)
-    CarVoltage = serializers.FloatField(required=False, allow_null=True)
-    CarCurrent = serializers.FloatField(required=False, allow_null=True)
-    CarTmp = serializers.FloatField(required=False, allow_null=True)
-    CarRBatteryVoltage = serializers.FloatField(required=False, allow_null=True)
-    CarRBatteryCurrent = serializers.FloatField(required=False, allow_null=True)
-    CarRBatteryTmp = serializers.FloatField(required=False, allow_null=True)
-    CarDBatteryVoltage = serializers.FloatField(required=False, allow_null=True)
-    CarDBatteryCurrent = serializers.FloatField(required=False, allow_null=True)
-    CarLng = serializers.FloatField(required=False, allow_null=True)
-    CarLat = serializers.FloatField(required=False, allow_null=True)
-    CarCarbon = serializers.FloatField(required=False, allow_null=True)
-    CarEnergy = serializers.FloatField(required=False, allow_null=True)
-    CarSum = serializers.FloatField(required=False, allow_null=True)
+    CarTMileage = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarFMileage = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarXMileage = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarStatus = serializers.CharField(required=False, allow_null=True, allow_blank=True) # min_value=0, max_value=4
+    CarRBatteryStatus = serializers.CharField(required=False, allow_null=True, allow_blank=True) # min_value=0, max_value=2
+    CarH2Left = serializers.CharField(required=False, allow_null=True, allow_blank=True) # min_value=0, max_value=100
+    CarH2Tmp = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarDBatteryStatus = serializers.CharField(required=False, allow_null=True, allow_blank=True) # min_value=0, max_value=2
+    CarDBatteryLeft = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarDBatteryTmp = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarSpeed = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarGeal = serializers.CharField(required=False, allow_null=True, allow_blank=True) # min_value=0, max_value=2
+    CarFault = serializers.CharField(required=False, allow_null=True, allow_blank=True) # min_value=0, max_value=2
+    CarRpm = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarTorque = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarVoltage = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarCurrent = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarTmp = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarRBatteryVoltage = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarRBatteryCurrent = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarRBatteryTmp = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarDBatteryVoltage = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarDBatteryCurrent = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarLng = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarLat = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarCarbon = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarEnergy = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    CarSum = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
     mapping = {
         "CarID": "Bus.bid",
@@ -95,7 +98,10 @@ class TapiSerializer(serializers.Serializer):
                 checkinStorage.publish_busdata(bid, objs)
                 old = cache_obj.get(modelName, {})
                 for key, value in objs.items():
-                    objs[key] = old.get(key, 0) + value
+                    try:
+                        objs[key] = old.get(key, 0) + float(value)
+                    except ValueError:
+                        logger.error("Failed to cast %s to float" % key)
             cache_obj[modelName].update(objs)
             cache_obj[modelName]['timestamp'] = now
 
