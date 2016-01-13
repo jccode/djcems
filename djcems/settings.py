@@ -203,9 +203,12 @@ LOGGING = {
         },
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
-            'formatter': 'verbose'
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'apilog.log'),
+            'when': 'midnight',
+            'formatter': 'verbose',
+            'interval': 1,
+            'backupCount': 0,
         },
     },
     'loggers': {
