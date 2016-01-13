@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.core.cache import cache
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class BeaconCheckinStorage:
@@ -32,9 +36,12 @@ class BeaconCheckinStorage:
     def publish_busdata(self, bid, busdata):
         storage = self._get_cache(bid)
         for uid, udata in storage.items():
-            udata["energy_saving_amount"] = udata["energy_saving_amount"]+busdata["energy_saving_amount"]
-            udata["energy_saving_money"] = udata["energy_saving_money"]+busdata["energy_saving_money"]
-            udata["emission_reduction"] = udata["emission_reduction"]+busdata["emission_reduction"]
+            try:
+                udata["energy_saving_amount"] += float(busdata["energy_saving_amount"])
+                udata["energy_saving_money"] += float(busdata["energy_saving_money"])
+                udata["emission_reduction"] += float(busdata["emission_reduction"])
+            except ValueError:
+                pass
             storage[uid] = udata
         self._set_cache(bid, storage)
         return storage

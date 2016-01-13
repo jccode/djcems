@@ -11,6 +11,7 @@ from beacon.services import checkinStorage
 
 logger = logging.getLogger(__name__)
 
+
 # Serializer for terminal api
 class TapiSerializer(serializers.Serializer):
 
