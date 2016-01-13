@@ -11,6 +11,7 @@ class UserSavingEnergyPerDay(models.Model):
     energy_saving_amount = models.IntegerField(_("Energy saving amount"), null=True, blank=True)
     energy_saving_money = models.IntegerField(_("Energy saving money"), null=True, blank=True)
     emission_reduction = models.IntegerField(_("Emission reduction"), null=True, blank=True)
+    total_milage = models.FloatField(_("Total milage"), null=True, blank=True)
 
 
 class UserSavingEnergyPerMonth(models.Model):
@@ -18,6 +19,7 @@ class UserSavingEnergyPerMonth(models.Model):
     energy_saving_amount = models.IntegerField(_("Energy saving amount"), null=True, blank=True)
     energy_saving_money = models.IntegerField(_("Energy saving money"), null=True, blank=True)
     emission_reduction = models.IntegerField(_("Emission reduction"), null=True, blank=True)
+    total_milage = models.FloatField(_("Total milage"), null=True, blank=True)
     timestamp = models.DateField()
     year = models.IntegerField()
     month = models.IntegerField()
