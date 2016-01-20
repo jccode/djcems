@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 23:21+0800\n"
-"PO-Revision-Date: 2015-12-18 21:37+0800\n"
+"POT-Creation-Date: 2016-01-20 23:10+0800\n"
+"PO-Revision-Date: 2016-01-20 23:14+0800\n"
 "Last-Translator: Jessie.chen <junchangchen@gmail.com>\n"
 "Language-Team: hongdingltd <jessie.chen@hongdingltd.com>\n"
 "Language: zh-Hans\n"
@@ -17,9 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: apps.py:6
+msgid "vehicle"
+msgstr "车辆"
+
 #: models.py:13
 msgid "Bus unique id"
-msgstr ""
+msgstr "车辆唯一编号"
 
 #: models.py:14
 msgid "Plate number"
@@ -29,154 +33,190 @@ msgstr "车牌号"
 msgid "Drivers"
 msgstr "司机"
 
+#: models.py:25
+msgid "Bus"
+msgstr "巴士"
+
+#: models.py:26
+msgid "Buses"
+msgstr "巴士"
+
 #. Translators: motionless / "静止"
-#: models.py:29
+#: models.py:40
 msgid "motionless"
-msgstr ""
+msgstr "静止"
 
 #. Translators: EV / "纯电动"
-#: models.py:31
+#: models.py:42
 msgid "EV"
-msgstr ""
+msgstr "纯电动"
 
 #. Translators: HEV / "混合动力"
-#: models.py:33
+#: models.py:44
 msgid "HEV"
-msgstr ""
+msgstr "混合动力"
 
 #. Translators: Road charging / "行车充电"
-#: models.py:35
+#: models.py:46
 msgid "Road charging"
-msgstr ""
+msgstr "行车充电"
 
 #. Translators: Back braking / 制动回馈
-#: models.py:37
-msgid "Back braking"
-msgstr ""
-
-#: models.py:45
-msgid "Speed"
-msgstr ""
-
-#: models.py:46
-msgid "Vehicle status"
-msgstr ""
-
-#: models.py:47
-msgid "Gear"
-msgstr ""
-
 #: models.py:48
+msgid "Back braking"
+msgstr "制动回馈"
+
+#: models.py:56
+msgid "Speed"
+msgstr "速度"
+
+#: models.py:57
+msgid "Vehicle status"
+msgstr "车辆状态"
+
+#: models.py:58
+msgid "Gear"
+msgstr "档位"
+
+#: models.py:59
 msgid "Failure information"
-msgstr ""
+msgstr "故障信息"
 
-#: models.py:49
+#: models.py:60
 msgid "Longitude"
-msgstr ""
+msgstr "经度"
 
-#: models.py:50
+#: models.py:61
 msgid "Latitude"
 msgstr ""
 
-#: models.py:54
+#: models.py:64 models.py:65
+msgid "Bus data"
+msgstr ""
+
+#: models.py:69
 msgid "Total milage"
 msgstr ""
 
-#: models.py:55
+#: models.py:70
 msgid "Section milage"
 msgstr ""
 
-#: models.py:56
+#: models.py:71
 msgid "Available milage"
 msgstr ""
 
-#: models.py:60
+#: models.py:74 models.py:75
+msgid "Mileage data"
+msgstr ""
+
+#: models.py:79
 msgid "Remain hydrogen"
 msgstr ""
 
-#: models.py:61
+#: models.py:80
 msgid "Hydrogen bottle temp."
 msgstr ""
 
+#: models.py:83 models.py:84
+msgid "Gas data"
+msgstr ""
+
 #. Translators: work / 工作中
-#: models.py:67
+#: models.py:90
 msgid "work"
 msgstr ""
 
 #. Translators: failure / 故障
-#: models.py:69
+#: models.py:92
 msgid "failure"
 msgstr ""
 
 #. Translators: stop / 停止
-#: models.py:71
+#: models.py:94
 msgid "stop"
 msgstr ""
 
-#: models.py:73
+#: models.py:96
 msgid "Fuel cell status"
 msgstr ""
 
-#: models.py:74
+#: models.py:97
 msgid "Fuel cell voltage"
 msgstr ""
 
-#: models.py:75
+#: models.py:98
 msgid "Fuel cell current"
 msgstr ""
 
-#: models.py:76
+#: models.py:99
 msgid "Fuel cell temperature"
 msgstr ""
 
-#: models.py:80
+#: models.py:102 models.py:103
+msgid "Fuel cell data"
+msgstr ""
+
+#: models.py:107
 msgid "Battery status"
 msgstr ""
 
-#: models.py:81
+#: models.py:108
 msgid "Battery voltage"
 msgstr ""
 
-#: models.py:82
+#: models.py:109
 msgid "Battery current"
 msgstr ""
 
-#: models.py:83
+#: models.py:110
 msgid "Battery temperature"
 msgstr ""
 
-#: models.py:84
+#: models.py:111
 msgid "Battery left"
 msgstr ""
 
-#: models.py:88
+#: models.py:114 models.py:115
+msgid "Power battery data"
+msgstr ""
+
+#: models.py:119
 msgid "Energy saving amount"
 msgstr ""
 
-#: models.py:89
+#: models.py:120
 msgid "Energy saving money"
 msgstr ""
 
-#: models.py:90
+#: models.py:121
 msgid "Emission reduction"
 msgstr ""
 
-#: models.py:94
+#: models.py:124 models.py:125
+msgid "Energy saving data"
+msgstr ""
+
+#: models.py:129
 msgid "Motor speed"
 msgstr ""
 
-#: models.py:95
+#: models.py:130
 msgid "Motor torque"
 msgstr ""
 
-#: models.py:96
+#: models.py:131
 msgid "Motor voltage"
 msgstr ""
 
-#: models.py:97
+#: models.py:132
 msgid "Motor current"
 msgstr ""
 
-#: models.py:98
+#: models.py:133
 msgid "Motor temperature"
+msgstr ""
+
+#: models.py:136 models.py:137
+msgid "Motor data"
 msgstr ""

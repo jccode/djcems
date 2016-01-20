@@ -27,8 +27,8 @@ class Bus(models.Model):
 
 
 class BaseBusData(models.Model):
-    bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField()
+    bus = models.ForeignKey(Bus, on_delete=models.CASCADE, verbose_name=_("bus"))
+    timestamp = models.DateTimeField(_("timestamp"))
 
     class Meta:
         abstract = True
@@ -60,16 +60,28 @@ class BusData(BaseBusData):
     longitude = models.CharField(_("Longitude"), null=True, blank=True, max_length=20)
     latitude = models.CharField(_("Latitude"), null=True, blank=True, max_length=20)
 
+    class Meta:
+        verbose_name = _("Bus data")
+        verbose_name_plural = _("Bus data")
+
 
 class MileageData(BaseBusData):
     total = models.CharField(_("Total milage"), null=True, blank=True, max_length=20)
     section = models.CharField(_("Section milage"), null=True, blank=True, max_length=20)
     remain = models.CharField(_("Available milage"), null=True, blank=True, max_length=20)
 
+    class Meta:
+        verbose_name = _("Mileage data")
+        verbose_name_plural = _("Mileage data")
+
 
 class GasData(BaseBusData):
     remain = models.CharField(_("Remain hydrogen"), null=True, blank=True, max_length=20)
     bottle_temp = models.CharField(_("Hydrogen bottle temp."), null=True, blank=True, max_length=20)
+
+    class Meta:
+        verbose_name = _("Gas data")
+        verbose_name_plural = _("Gas data")
 
 
 class FuelCellData(BaseBusData):
@@ -86,6 +98,10 @@ class FuelCellData(BaseBusData):
     current = models.CharField(_("Fuel cell current"), null=True, blank=True, max_length=20)
     temp = models.CharField(_("Fuel cell temperature"), null=True, blank=True, max_length=20)
 
+    class Meta:
+        verbose_name = _("Fuel cell data")
+        verbose_name_plural = _("Fuel cell data")
+
 
 class PowerBatteryData(BaseBusData):
     status = models.CharField(_("Battery status"), null=True, blank=True, max_length=20)
@@ -94,11 +110,19 @@ class PowerBatteryData(BaseBusData):
     temp = models.CharField(_("Battery temperature"), null=True, blank=True, max_length=20)
     remain = models.CharField(_("Battery left"), null=True, blank=True, max_length=20)
 
+    class Meta:
+        verbose_name = _("Power battery data")
+        verbose_name_plural = _("Power battery data")
+
 
 class EnergySavingData(BaseBusData):
     energy_saving_amount = models.CharField(_("Energy saving amount"), null=True, blank=True, max_length=20)
     energy_saving_money = models.CharField(_("Energy saving money"), null=True, blank=True, max_length=20)
     emission_reduction = models.CharField(_("Emission reduction"), null=True, blank=True, max_length=20)
+
+    class Meta:
+        verbose_name = _("Energy saving data")
+        verbose_name_plural = _("Energy saving data")
 
 
 class MotorData(BaseBusData):
@@ -107,3 +131,7 @@ class MotorData(BaseBusData):
     voltage = models.CharField(_("Motor voltage"), null=True, blank=True, max_length=20)
     current = models.CharField(_("Motor current"), null=True, blank=True, max_length=20)
     temp = models.CharField(_("Motor temperature"), null=True, blank=True, max_length=20)
+
+    class Meta:
+        verbose_name = _("Motor data")
+        verbose_name_plural = _("Motor data")
